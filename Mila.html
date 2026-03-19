@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mila Markovic | Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+        :root {
+            --red: #1a85ff;
+            --dark-red: #00208b;
+            --black: #030303;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #505a75 0%, #000000 25%, #00354a 50%, #5f008b 75%, #b300aa 100%);
+            background-size: 400% 400%;
+            animation: epicGradient 12s ease infinite;
+            color: #fdfcfc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes epicGradient {
+            0%   { background-position: 0% 50%; }
+            25%  { background-position: 100% 30%; }
+            50%  { background-position: 50% 100%; }
+            75%  { background-position: 0% 70%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* INTENSE RED PULSE LAYER */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(53, 2, 2, 0.25) 0%, transparent 60%);
+            animation: pulse1 7s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 70%, rgba(49, 26, 255, 0.18) 0%, transparent 65%);
+            animation: pulse2 9s ease-in-out infinite reverse;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes pulse1 {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+            50%      { transform: scale(1.3) rotate(8deg); opacity: 0.9; }
+        }
+
+        @keyframes pulse2 {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50%      { transform: scale(1.25) rotate(-10deg); opacity: 0.85; }
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(182, 26, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red);
+            letter-spacing: -2px;
+            text-shadow: 0 0 25px var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--red);
+            transition: width 0.4s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+            text-shadow: 0 0 15px var(--red);
+        }
+
+        /* HERO */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 6.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px var(--red);
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            padding: 18px 52px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s;
+            box-shadow: 0 0 35px rgba(26, 118, 255, 0.6);
+        }
+
+        .btn:hover {
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 0 60px rgba(125, 26, 255, 0.479);
+            background: #4495ff;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 140px 5% 100px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #fff;
+            text-shadow: 0 0 30px var(--red);
+        }
+
+        /* ABOUT */
+        #about {
+            background: rgba(10, 10, 10, 0.85);
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--red);
+        }
+
+        .about-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* CERTIFICATES */
+        #certificates {
+            background: transparent;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .cert-card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid rgba(163, 26, 255, 0.4);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(152, 26, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--red);
+            transform: translateY(-15px);
+            box-shadow: 0 0 45px rgba(163, 26, 255, 0.5);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+            top: -20%;
+            left: -20%;
+        }
+
+        .cert-card h3 {
+            color: var(--red);
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cert-card p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-card a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 3px;
+        }
+
+        /* LINKS */
+        #links {
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .link-card {
+            background: #000000;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(26, 144, 255, 0.3);
+            transition: all 0.4s;
+        }
+
+        .link-card:hover {
+            border-color: var(--red);
+            transform: scale(1.04);
+            box-shadow: 0 0 40px rgba(41, 26, 255, 0.4);
+        }
+
+        .link-card h3 {
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .link-card a {
+            color: #fff;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* CONTACT */
+        #contact {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 3px solid var(--red);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(171, 26, 255, 0.4);
+            color: #fff;
+            padding: 18px;
+            margin-bottom: 1.8rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: border 0.4s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--red);
+            outline: none;
+            box-shadow: 0 0 20px rgba(26, 133, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        button:hover {
+            background: #a544ff;
+            box-shadow: 0 0 50px var(--red);
+            transform: translateY(-3px);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: #0a0a0a;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 4.2rem; }
+            .nav-links { gap: 1.5rem; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Mila Markovic</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#links">Links</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Mila Markovic</h1>
+            <p>Digital Portfolio • 2026</p>
+            <a href="#about" class="btn">ENTER</a>
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-text">
+            <p>Im Web Developer Full Stack and 3D Modeling & Animator!</p>
+            <p>Creative and team work person, love to learn new staff!</p>
+        </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+        <h2>Certificates</h2>
+        <div class="cert-grid">
+            
+            <!-- Example Certificate 1 - REPLACE ME -->
+            <div class="cert-card">
+                <h3></h3>
+                <p>3D Modeling</p>
+                <a href="https://api.profil.infostud.com/api/protected/file/profile-document/1036977/additional-education/371947" target="_blank">View Certificate →</a>
+            </div>
+
+            <!-- Example Certificate 2 - REPLACE ME -->
+            <div class="cert-card">
+                <h3></h3>
+                <p>3D Modeling & Animation</p>
+                <a href="https://api.profil.infostud.com/api/protected/file/profile-document/1036977/additional-education/371948" target="_blank">View Certificate →</a>
+            </div>
+
+            <!-- Example Certificate 3 - REPLACE ME -->
+            <div class="cert-card">
+                <h3></h3>
+                <p></p>
+                <a href="https://your-certificate-link-here.com" target="_blank">View Certificate →</a>
+            </div>
+
+            <!-- Add more cards here exactly like the ones above -->
+        </div>
+    </section>
+
+    <!-- LINKS -->
+    <section id="links">
+        <h2>Links &amp; Projects</h2>
+        <div class="links-grid">
+            
+            <!-- Example Link 1 -->
+            <div class="link-card">
+                <h3></h3>
+                <p>Artstation</p>
+                <a href="https://xxakumaxx.artstation.com/" target="_blank">Visit Project →</a>
+            </div>
+
+            <!-- Example Link 2 -->
+            <div class="link-card">
+                <h3></h3>
+                <p></p>
+                <a href="https://github.com/yourusername" target="_blank">Go to GitHub →</a>
+            </div>
+
+            <!-- Example Link 3 -->
+            <div class="link-card">
+                <h3></h3>
+                <p></p>
+                <a href="https://your-behance-link.com" target="_blank">View Portfolio →</a>
+            </div>
+
+            <!-- Add as many as you want -->
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/your-form-id-here" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="6" placeholder="Your Message..." required></textarea>
+                <button type="submit">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 MILA MARKOVIC • PORTFOLIO • 
+    </footer>
+
+</body>
+</html>
